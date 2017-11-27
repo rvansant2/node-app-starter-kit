@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./db-data:/data/db
+
+  api:
+    build: ./api
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+    volumes:
+      - ./api/dist:/var/www/api/dist:rw
+      - ./api/config:/var/www/api/config:rw
+
+#  ui:
+#    build: ./ui
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./ui:/var/www/ui:rw
+
+volumes:
+  db-data:

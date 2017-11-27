@@ -1,0 +1,5 @@
+{
+  "application": {
+    "mongodb": "mongodb://localhost:27017/bookmark-tool"
+  }
+}

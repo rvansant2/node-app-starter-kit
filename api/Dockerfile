@@ -1,14 +1,21 @@
+FROM node:latest as builder
+
+RUN mkdir -p /build
+WORKDIR /build
+
+COPY ./.babelrc ./.eslintrc ./package*.json ./
+COPY ./config ./config
+RUN npm install
+COPY ./src ./src
+RUN npm run build
+
 FROM node:latest
 
-RUN mkdir -p /var/www/api/dist
-WORKDIR /var/www/api
-RUN mkdir -p config
+RUN mkdir -p /api
+COPY --from=builder /build/ /api/
+WORKDIR /api
 
-COPY ./package.json /var/www/api
-COPY ./config /var/www/api/config
-COPY ./dist /var/www/api/dist
-
-RUN npm install
-CMD [ "npm", "start" ]
-
-
+COPY ./package*.json ./
+COPY ./config ./config
+RUN npm install --only=production
+CMD npm start

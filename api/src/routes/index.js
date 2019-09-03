@@ -1,10 +1,11 @@
 import express from 'express';
+
 const router = express.Router();
 
 /* GET home page. */
-router.get( '/', function( req, res, next ) {
+router.get('/', (req, res, next) => {
   const baseJSON = {};
-  res.json( baseJSON );
+  res.jsonp(baseJSON);
 });
 
-module.exports = router;
+export default router;

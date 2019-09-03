@@ -4,26 +4,28 @@ services:
   mongo:
     image: mongo:latest
     ports:
-      - "27018:27017"
+      - 27016:27017
     volumes:
       - ./db-data:/data/db
 
   api:
     build: ./api
+    environment:
+      - PORT=3001
     ports:
-      - "3001:3001"
+      - 3001:3001
     depends_on:
       - mongo
     volumes:
-      - ./api/dist:/var/www/api/dist:rw
-      - ./api/config:/var/www/api/config:rw
+      - ./api/dist:/var/www/api/dist:consistent
+      - ./api/config:/var/www/api/config:consistent
 
 #  ui:
 #    build: ./ui
 #    ports:
-#      - "3000:3000"
+#      - 3000:3000
 #    volumes:
-#      - ./ui:/var/www/ui:rw
+#      - ./ui:/ui:rw
 
 volumes:
   db-data:

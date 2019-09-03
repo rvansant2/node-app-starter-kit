@@ -59,6 +59,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# local hidden files
-.idea
-.DS_Store
+db-data/*
+# environment
+api/dist/*

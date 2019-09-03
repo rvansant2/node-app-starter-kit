@@ -3,18 +3,27 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "babel-start": "PORT=3001 ./node_modules/.bin/babel-node ./src/bin/www",
-    "start": "PORT=3001 node dist/app.js",
-    "dev": "PORT=3001 nodemon dist/app.js",
+    "babel-start": "./node_modules/.bin/babel-node ./src/bin/www",
+    "start": "node dist/app.js",
+    "dev": "nodemon dist/app.js",
     "build": "babel src -d dist",
     "watch": "babel src -d dist --watch",
-    "test": "mocha --compilers js:babel-core/register src/test"
+    "test": "mocha --compilers js:babel-core/register src/test",
+    "lint": "eslint --fix src",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css,md}": [
+      "eslint --fix src",
+      "git add"
+    ]
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "body-parser": "~1.17.1",
     "config": "^1.28.1",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
     "debug": "~2.6.3",
     "express": "^4.15.5",
     "jade": "~1.11.0",
@@ -31,6 +40,14 @@
     "babel-preset-airbnb": "^2.4.0",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
-    "mocha": "^4.0.1"
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "mocha": "^4.0.1",
+    "prettier": "^1.14.3"
   }
 }

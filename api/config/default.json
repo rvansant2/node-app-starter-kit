@@ -1,5 +1,5 @@
 {
   "application": {
-    "mongodb": "mongodb://localhost:27017/bookmark-tool"
+    "db": "mongodb://mongo:27017/node-starter-kit"
   }
 }

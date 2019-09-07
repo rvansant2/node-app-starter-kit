@@ -10,11 +10,18 @@
     "watch": "babel src -d dist --watch",
     "test": "mocha --compilers js:babel-core/register src/test",
     "lint": "eslint --fix src",
+    "pretty": "prettier --write --tab-width 2 \"src/**/*.{js,jsx,json}\"",
     "precommit": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css,md}": [
-      "eslint --fix src",
+      "npm run pretty",
+      "npm run lint",
       "git add"
     ]
   },
@@ -47,7 +54,9 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "mocha": "^4.0.1",
-    "prettier": "^1.14.3"
+    "prettier": "^1.18.2"
   }
 }

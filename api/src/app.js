@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -63,18 +63,18 @@ app.use((err, req, res, next) => {
 
 // Mongoose connections
 mongoose
-  .connect(
-    db,
-    { useMongoClient: true },
-  )
+  .connect(db, { useMongoClient: true })
   .then(() => {
+    // eslint-disable-next-line no-console
     console.info('Mongodb connection is successful!');
   })
-  .catch(err => {
+  .catch((err) => {
+    // eslint-disable-next-line no-console
     console.error(err);
   });
 
 app.listen(port, () =>
+  // eslint-disable-next-line no-console
   console.log(`Node application is listening on port ${port}!`),
 );
 

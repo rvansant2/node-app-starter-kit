@@ -34,7 +34,7 @@
     "debug": "~2.6.3",
     "express": "^4.15.5",
     "jade": "~1.11.0",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.13.15",
     "morgan": "~1.9.1",
     "nodemon": "^1.12.1",
     "package.json": "^2.0.1",
